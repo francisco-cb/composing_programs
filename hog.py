@@ -1,6 +1,8 @@
 """CS 61A Presents The Game of Hog.
 Ver: https://cs61a.org/proj/hog/"""
 
+from re import X
+from unicodedata import digit
 from dice import six_sided, four_sided, make_test_dice
 from ucb import main, trace, interact
 
@@ -86,6 +88,24 @@ def hefty_hogs(player_score, opponent_score):
     """
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    # For this case could use digit_fn(0)
+    # preferred to keep separate
+    if opponent_score == 0:
+        return 1
+    else:
+        def compose_fn(f, g):
+            def h(x):
+                return f(g(x))
+            return h
+        
+        all_but_last, last = opponent_score // 10, opponent_score % 10
+        fn = digit_fn(last)
+        # takes advantage that 0 is falsy
+        while all_but_last:
+            all_but_last, last = all_but_last // 10, all_but_last % 10
+            fn = compose_fn(digit_fn(last), fn)
+        
+        return fn(player_score) % 30
     # END PROBLEM 2
 
 
