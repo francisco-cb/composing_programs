@@ -1,0 +1,6 @@
+*.bak
+*.dat
+*.dir
+*.ok_history
+__pycache__
+tests/__pycache__
