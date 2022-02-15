@@ -127,6 +127,10 @@ def take_turn(num_rolls, player_score, opponent_score, dice=six_sided, goal=GOAL
     assert max(player_score, opponent_score) < goal, 'The game should be over.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if num_rolls == 0:
+        return hefty_hogs(player_score, opponent_score)
+    
+    return roll_dice(num_rolls, dice)
     # END PROBLEM 3
 
 
