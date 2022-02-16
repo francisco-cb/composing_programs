@@ -353,7 +353,7 @@ def max_scoring_num_rolls(dice=six_sided, total_samples=1000):
     
     for num_dice in range(1, 11):
         result = averaged_roll(num_dice, dice)
-        
+
         if best_result < result:
             best_result = result
             best_num_roll = num_dice
@@ -399,7 +399,9 @@ def hefty_hogs_strategy(score, opponent_score, threshold=8, num_rolls=6):
     returns NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 6  # Remove this line once implemented.
+    if threshold - hefty_hogs(score, opponent_score) <= 0:
+        return 0
+    return num_rolls
     # END PROBLEM 10
 
 
