@@ -322,6 +322,18 @@ def make_averaged(original_function, total_samples=1000):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    # this is a general solution, in case of test dice, result is
+    # average of sum of results of N groups (given by num_rolls, and number of possible results)
+    # ie: for the doctype example, N=4 groups ==> sum = 4+2+5+1 = 12
+    # average = 3.0
+    # for N=2 groups ==> sum = (4+2) + (5+1) = 6 + 1
+    # average = 7 / 2 = 3.5
+    def averaged_function(*args):
+        result = 0
+        for i in range(total_samples):
+            result += original_function(*args)
+        return result/total_samples
+    return averaged_function
     # END PROBLEM 8
 
 
