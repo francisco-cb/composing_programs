@@ -196,7 +196,12 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
         # then add scores given the chosen strategy and Hog Pile condition
         scores[who] += take_turn(num_roll, scores[who], scores[next_player(who)], dice, goal)
         scores[who] += hog_pile(scores[who], scores[next_player(who)])
-        # update WHO the current player is
+        leader, message = say(*scores, leader)
+
+        if message:
+            print(message)
+
+        # end turn and update WHO the current player is
         who = next_player(who)
     # END PROBLEM 5
     # (note that the indentation for the problem 7 prompt (***YOUR CODE HERE***) might be misleading)
