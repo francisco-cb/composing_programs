@@ -142,6 +142,10 @@ def hog_pile(player_score, opponent_score):
     """
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    ones_digit = 0
+    if player_score % 10 == opponent_score % 10:
+        ones_digit += player_score % 10
+    return ones_digit
     # END PROBLEM 4
 
 
