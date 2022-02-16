@@ -186,11 +186,26 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     leader = None  # To be used in problem 7
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    strats = [strategy0, strategy1]
+    scores = [score0, score1]
+
+    # check if any score surpasses goal
+    while all(score < goal for score in scores):
+        # choose number of dice to roll based on WHO the current player is
+        num_roll = strats[who](scores[who], scores[next_player(who)])
+        # then add scores given the chosen strategy and Hog Pile condition
+        scores[who] += take_turn(num_roll, scores[who], scores[next_player(who)], dice, goal)
+        scores[who] += hog_pile(scores[who], scores[next_player(who)])
+        # update WHO the current player is
+        who = next_player(who)
     # END PROBLEM 5
     # (note that the indentation for the problem 7 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
     # END PROBLEM 7
+    
+    # update final scores for return
+    score0, score1 = scores[0], scores[1]
     return score0, score1
 
 
